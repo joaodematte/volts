@@ -1,0 +1,37 @@
+{
+  "name": "solarjot",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "check": "biome check --write .",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F @solarjot/db db:push",
+    "db:studio": "turbo -F @solarjot/db db:studio",
+    "db:generate": "turbo -F @solarjot/db db:generate",
+    "db:migrate": "turbo -F @solarjot/db db:migrate",
+    "db:start": "turbo -F @solarjot/db db:start",
+    "db:watch": "turbo -F @solarjot/db db:watch",
+    "db:stop": "turbo -F @solarjot/db db:stop",
+    "db:down": "turbo -F @solarjot/db db:down"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "turbo": "^2.5.4",
+    "@biomejs/biome": "^2.2.0",
+    "tsdown": "^0.15.5",
+    "@types/bun": "^1.2.6"
+  },
+  "packageManager": "pnpm@10.21.0"
+}
