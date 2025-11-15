@@ -14,7 +14,7 @@ RUN bun install
 
 COPY --from=builder /app/out/full/ .
 
-RUN bun turbo build
+RUN NODE_ENV=production bun turbo build
 
 FROM base AS runner
 WORKDIR /app
@@ -26,4 +26,4 @@ COPY --from=installer /app .
 
 EXPOSE 3000
 
-CMD bun run apps/server/dist/index.js
+CMD NODE_ENV=production bun run apps/server/dist/index.js
