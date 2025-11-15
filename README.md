@@ -22,7 +22,7 @@ This project was created with [Better-T-Stack](https://github.com/AmanVarshney01
 First, install the dependencies:
 
 ```bash
-pnpm install
+bun install
 ```
 
 ## Database Setup
@@ -35,13 +35,13 @@ This project uses PostgreSQL with Drizzle ORM.
 3. Apply the schema to your database:
 
 ```bash
-pnpm run db:push
+bun run db:push
 ```
 
 Then, run the development server:
 
 ```bash
-pnpm run dev
+bun run dev
 ```
 
 Open [http://localhost:3001](http://localhost:3001) in your browser to see the web application.
@@ -57,16 +57,17 @@ volts/
 ├── packages/
 │   ├── api/         # API layer / business logic
 │   ├── auth/        # Authentication configuration & logic
+│   ├── config/      # Shared Typescript configuration
 │   └── db/          # Database schema & queries
 ```
 
 ## Available Scripts
 
-- `pnpm run dev`: Start all applications in development mode
-- `pnpm run build`: Build all applications
-- `pnpm run dev:web`: Start only the web application
-- `pnpm run dev:server`: Start only the server
-- `pnpm run check-types`: Check TypeScript types across all apps
-- `pnpm run db:push`: Push schema changes to database
-- `pnpm run db:studio`: Open database studio UI
-- `pnpm run check`: Run Biome formatting and linting
+- `bun run dev`: Start all applications in development mode
+- `bun run build`: Build all applications
+- `bun run dev:web`: Start only the web application
+- `bun run dev:server`: Start only the server
+- `bun run check-types`: Check TypeScript types across all apps
+- `bun run db:push`: Push schema changes to database
+- `bun run db:studio`: Open database studio UI
+- `bun run check`: Run Biome formatting and linting

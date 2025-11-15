@@ -2,10 +2,22 @@
   "name": "volts",
   "private": true,
   "type": "module",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "hono": "^4.8.2",
+      "@trpc/server": "^11.5.0",
+      "better-auth": "^1.3.28",
+      "dotenv": "^17.2.2",
+      "zod": "^4.1.11",
+      "typescript": "^5.8.2",
+      "tsdown": "^0.15.5",
+      "@trpc/client": "^11.5.0"
+    }
+  },
   "scripts": {
     "check": "biome check --write .",
     "dev": "turbo dev",
@@ -14,14 +26,14 @@
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F server dev",
-    "db:push": "turbo -F @volts/db db:push",
-    "db:studio": "turbo -F @volts/db db:studio",
-    "db:generate": "turbo -F @volts/db db:generate",
-    "db:migrate": "turbo -F @volts/db db:migrate",
-    "db:start": "turbo -F @volts/db db:start",
-    "db:watch": "turbo -F @volts/db db:watch",
-    "db:stop": "turbo -F @volts/db db:stop",
-    "db:down": "turbo -F @volts/db db:down"
+    "db:push": "turbo -F @teste/db db:push",
+    "db:studio": "turbo -F @teste/db db:studio",
+    "db:generate": "turbo -F @teste/db db:generate",
+    "db:migrate": "turbo -F @teste/db db:migrate",
+    "db:start": "turbo -F @teste/db db:start",
+    "db:watch": "turbo -F @teste/db db:watch",
+    "db:stop": "turbo -F @teste/db db:stop",
+    "db:down": "turbo -F @teste/db db:down"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
@@ -33,5 +45,5 @@
     "tsdown": "^0.15.5",
     "@types/bun": "^1.2.6"
   },
-  "packageManager": "pnpm@10.21.0"
+  "packageManager": "bun@1.3.2"
 }
