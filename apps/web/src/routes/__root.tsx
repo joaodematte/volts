@@ -9,6 +9,7 @@ import {
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import type { TRPCOptionsProxy } from '@trpc/tanstack-react-query';
 import type { AppRouter } from '@volts/api/routers/index';
+import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
 import globalsCss from '@/styles/globals.css?url';
 
@@ -60,13 +61,20 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 
 function RootDocument() {
   return (
-    <html className="dark" lang="pt-BR">
+    <html className="dark" lang="pt-BR" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body>
-        <Outlet />
-        <Toaster position="top-right" />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
+          enableSystem
+        >
+          <Outlet />
+          <Toaster position="top-right" />
+        </ThemeProvider>
         <TanStackRouterDevtools position="bottom-left" />
         <ReactQueryDevtools buttonPosition="bottom-right" position="bottom" />
         <Scripts />

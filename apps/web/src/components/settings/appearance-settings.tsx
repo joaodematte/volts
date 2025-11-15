@@ -1,3 +1,4 @@
+import { useTheme } from 'next-themes';
 import { Card, CardContent } from '@/components/ui/card';
 import {
   Select,
@@ -7,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { useTheme } from '@/hooks/use-theme';
 
 export function AppearanceSettings() {
   const { theme, setTheme } = useTheme();

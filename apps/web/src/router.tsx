@@ -5,7 +5,6 @@ import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query';
 import type { AppRouter } from '@volts/api/routers/index';
 import { routeTree } from './routeTree.gen';
 import './styles/globals.css';
-import { ThemeProvider } from './components/providers/theme-provider';
 import { TRPCProvider } from './utils/trpc';
 
 export const queryClient = new QueryClient({
@@ -41,14 +40,7 @@ export function getRouter() {
     Wrap: ({ children }) => (
       <QueryClientProvider client={queryClient}>
         <TRPCProvider queryClient={queryClient} trpcClient={trpcClient}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            disableTransitionOnChange
-            enableSystem
-          >
-            {children}
-          </ThemeProvider>
+          {children}
         </TRPCProvider>
       </QueryClientProvider>
     ),
