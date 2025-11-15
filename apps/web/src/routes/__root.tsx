@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import type { TRPCOptionsProxy } from '@trpc/tanstack-react-query';
+import { Toaster } from '@/components/ui/sonner';
 import globalsCss from '@/styles/globals.css?url';
 
 export interface RouterAppContext {
@@ -65,6 +66,7 @@ function RootDocument() {
       </head>
       <body>
         <Outlet />
+        <Toaster position="top-right" />
         <TanStackRouterDevtools position="bottom-left" />
         <ReactQueryDevtools buttonPosition="bottom-right" position="bottom" />
         <Scripts />

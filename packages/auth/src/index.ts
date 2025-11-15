@@ -21,6 +21,9 @@ export const auth = betterAuth<BetterAuthOptions>({
       secure: true,
       httpOnly: true,
     },
+    database: {
+      generateId: false,
+    },
   },
   session: {
     cookieCache: {

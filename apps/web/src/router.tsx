@@ -5,6 +5,7 @@ import { createTRPCClient, httpBatchLink } from '@trpc/client';
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query';
 import { routeTree } from './routeTree.gen';
 import './styles/globals.css';
+import { ThemeProvider } from './components/providers/theme-provider';
 import { TRPCProvider } from './utils/trpc';
 
 export const queryClient = new QueryClient({
@@ -40,7 +41,14 @@ export function getRouter() {
     Wrap: ({ children }) => (
       <QueryClientProvider client={queryClient}>
         <TRPCProvider queryClient={queryClient} trpcClient={trpcClient}>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            disableTransitionOnChange
+            enableSystem
+          >
+            {children}
+          </ThemeProvider>
         </TRPCProvider>
       </QueryClientProvider>
     ),
