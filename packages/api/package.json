@@ -1,5 +1,5 @@
 {
-  "name": "@solarjot/api",
+  "name": "@volts/api",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "tsdown": "catalog:",
-    "@solarjot/config": "workspace:*"
+    "@volts/config": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -27,7 +27,7 @@
     "hono": "catalog:",
     "dotenv": "catalog:",
     "zod": "catalog:",
-    "@solarjot/auth": "workspace:*",
-    "@solarjot/db": "workspace:*"
+    "@volts/auth": "workspace:*",
+    "@volts/db": "workspace:*"
   }
 }

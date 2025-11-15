@@ -29,10 +29,10 @@ function RouteComponent() {
           <Icons.Volts className="size-12 text-yellow-400" />
         </CardHeader>
         <CardContent className="mb-8">
-          <h1 className="mb-4 font-semibold text-2xl text-white">
-            Bem-vindo à SolarJot
+          <h1 className="mb-4 font-medium text-2xl text-white">
+            Bem-vindo à Volts
           </h1>
-          <p className="font-medium text-muted-foreground">
+          <p className="text-muted-foreground">
             Gerencie todo o ciclo do seu negócio, da proposta comercial até a
             instalação final, em uma única plataforma
           </p>

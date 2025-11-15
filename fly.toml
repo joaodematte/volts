@@ -1,4 +1,4 @@
-app = 'solarjot-server'
+app = 'volts-server'
 primary_region = 'gru'
 
 [build]

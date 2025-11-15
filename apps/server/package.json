@@ -16,14 +16,14 @@
     "better-auth": "catalog:",
     "dotenv": "catalog:",
     "zod": "catalog:",
-    "@solarjot/api": "workspace:*",
-    "@solarjot/auth": "workspace:*",
-    "@solarjot/db": "workspace:*"
+    "@volts/api": "workspace:*",
+    "@volts/auth": "workspace:*",
+    "@volts/db": "workspace:*"
   },
   "devDependencies": {
     "typescript": "catalog:",
     "@types/bun": "^1.2.6",
     "tsdown": "catalog:",
-    "@solarjot/config": "workspace:*"
+    "@volts/config": "workspace:*"
   }
 }

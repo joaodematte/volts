@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as DashboardRouteRouteImport } from './routes/dashboard/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
-import { Route as DashboardAccountSettingsRouteImport } from './routes/dashboard/account/settings'
+import { Route as DashboardMyAccountRouteImport } from './routes/dashboard/my-account'
 
 const DashboardRouteRoute = DashboardRouteRouteImport.update({
   id: '/dashboard',
@@ -29,42 +29,36 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
-const DashboardAccountSettingsRoute =
-  DashboardAccountSettingsRouteImport.update({
-    id: '/account/settings',
-    path: '/account/settings',
-    getParentRoute: () => DashboardRouteRoute,
-  } as any)
+const DashboardMyAccountRoute = DashboardMyAccountRouteImport.update({
+  id: '/my-account',
+  path: '/my-account',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/dashboard/my-account': typeof DashboardMyAccountRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/dashboard/account/settings': typeof DashboardAccountSettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard/my-account': typeof DashboardMyAccountRoute
   '/dashboard': typeof DashboardIndexRoute
-  '/dashboard/account/settings': typeof DashboardAccountSettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/dashboard/my-account': typeof DashboardMyAccountRoute
   '/dashboard/': typeof DashboardIndexRoute
-  '/dashboard/account/settings': typeof DashboardAccountSettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/dashboard/' | '/dashboard/account/settings'
+  fullPaths: '/' | '/dashboard' | '/dashboard/my-account' | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/dashboard/account/settings'
-  id:
-    | '__root__'
-    | '/'
-    | '/dashboard'
-    | '/dashboard/'
-    | '/dashboard/account/settings'
+  to: '/' | '/dashboard/my-account' | '/dashboard'
+  id: '__root__' | '/' | '/dashboard' | '/dashboard/my-account' | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,24 +89,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
-    '/dashboard/account/settings': {
-      id: '/dashboard/account/settings'
-      path: '/account/settings'
-      fullPath: '/dashboard/account/settings'
-      preLoaderRoute: typeof DashboardAccountSettingsRouteImport
+    '/dashboard/my-account': {
+      id: '/dashboard/my-account'
+      path: '/my-account'
+      fullPath: '/dashboard/my-account'
+      preLoaderRoute: typeof DashboardMyAccountRouteImport
       parentRoute: typeof DashboardRouteRoute
     }
   }
 }
 
 interface DashboardRouteRouteChildren {
+  DashboardMyAccountRoute: typeof DashboardMyAccountRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
-  DashboardAccountSettingsRoute: typeof DashboardAccountSettingsRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardMyAccountRoute: DashboardMyAccountRoute,
   DashboardIndexRoute: DashboardIndexRoute,
-  DashboardAccountSettingsRoute: DashboardAccountSettingsRoute,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(

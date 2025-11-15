@@ -1,4 +1,3 @@
-import type { AppRouter } from '@solarjot/api/routers/index';
 import type { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
@@ -9,6 +8,7 @@ import {
 } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import type { TRPCOptionsProxy } from '@trpc/tanstack-react-query';
+import type { AppRouter } from '@volts/api/routers/index';
 import { Toaster } from '@/components/ui/sonner';
 import globalsCss from '@/styles/globals.css?url';
 
@@ -28,7 +28,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'SolarJot — Gestão inteligente para Integradores Solares',
+        title: 'Volts — Gestão inteligente para Integradores Solares',
       },
       {
         name: 'description',

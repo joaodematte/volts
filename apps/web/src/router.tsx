@@ -1,8 +1,8 @@
-import type { AppRouter } from '@solarjot/api/routers/index';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createRouter as createTanStackRouter } from '@tanstack/react-router';
 import { createTRPCClient, httpBatchLink } from '@trpc/client';
 import { createTRPCOptionsProxy } from '@trpc/tanstack-react-query';
+import type { AppRouter } from '@volts/api/routers/index';
 import { routeTree } from './routeTree.gen';
 import './styles/globals.css';
 import { ThemeProvider } from './components/providers/theme-provider';

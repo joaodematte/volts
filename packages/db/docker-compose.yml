@@ -1,17 +1,17 @@
-name: solarjot
+name: volts
 
 services:
   postgres:
     image: postgres
-    container_name: solarjot-postgres
+    container_name: volts-postgres
     environment:
-      POSTGRES_DB: solarjot
+      POSTGRES_DB: volts
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
     volumes:
-      - solarjot_postgres_data:/var/lib/postgresql
+      - volts_postgres_data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -20,4 +20,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  solarjot_postgres_data:
+  volts_postgres_data:

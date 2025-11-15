@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { AppearanceSettings } from '@/components/settings/appearance-settings';
 import { ProfileSettings } from '@/components/settings/profile-settings';
-import { getPageTitle } from '@/lib/get-page-title';
+import { getPageTitle } from '@/lib/seo';
 
-export const Route = createFileRoute('/dashboard/account/settings')({
+export const Route = createFileRoute('/dashboard/my-account')({
   component: RouteComponent,
   head: () => ({
     meta: [

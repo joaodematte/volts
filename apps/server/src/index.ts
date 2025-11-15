@@ -1,8 +1,8 @@
 import 'dotenv/config';
 import { trpcServer } from '@hono/trpc-server';
-import { createContext } from '@solarjot/api/context';
-import { appRouter } from '@solarjot/api/routers/index';
-import { auth } from '@solarjot/auth';
+import { createContext } from '@volts/api/context';
+import { appRouter } from '@volts/api/routers/index';
+import { auth } from '@volts/auth';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { logger } from 'hono/logger';

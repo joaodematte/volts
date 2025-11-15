@@ -62,7 +62,7 @@ export function NavUser({ user }: NavUserProps) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
-              className="border bg-sidebar-accent text-sidebar-accent-foreground hover:bg-sidebar-accent data-[state=open]:bg-sidebar-accent dark:bg-sidebar-accent/30"
+              className="text-sidebar-accent-foreground hover:bg-sidebar-accent data-[state=open]:bg-sidebar-accent"
               size="lg"
             >
               <Avatar className="h-8 w-8 rounded-lg">
@@ -96,7 +96,7 @@ export function NavUser({ user }: NavUserProps) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild className="cursor-pointer">
-              <Link preload="intent" to="/dashboard/account/settings">
+              <Link preload="intent" to="/dashboard/my-account">
                 <IconUser />
                 Minha conta
               </Link>

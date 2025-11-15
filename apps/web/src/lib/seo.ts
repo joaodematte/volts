@@ -1,3 +1,3 @@
 export function getPageTitle(title: string) {
-  return `${title} — SolarJot`;
+  return `${title} — Volts`;
 }

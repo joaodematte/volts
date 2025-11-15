@@ -1,7 +1,8 @@
-import { db } from '@solarjot/db';
-import * as schema from '@solarjot/db/schema';
+import { db } from '@volts/db';
+import * as schema from '@volts/db/schema';
 import { type BetterAuthOptions, betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { organization } from 'better-auth/plugins';
 
 export const auth = betterAuth<BetterAuthOptions>({
   basePath: '/auth',
@@ -37,4 +38,5 @@ export const auth = betterAuth<BetterAuthOptions>({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
     },
   },
+  plugins: [organization()],
 });

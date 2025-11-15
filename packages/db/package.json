@@ -1,5 +1,5 @@
 {
-  "name": "@solarjot/db",
+  "name": "@volts/db",
   "type": "module",
   "exports": {
     ".": {
@@ -27,7 +27,7 @@
     "db:down": "docker compose down"
   },
   "devDependencies": {
-    "@solarjot/config": "workspace:*",
+    "@volts/config": "workspace:*",
     "@types/pg": "^8.11.11",
     "drizzle-kit": "^0.31.2",
     "tsdown": "catalog:"

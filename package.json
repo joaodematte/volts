@@ -1,5 +1,5 @@
 {
-  "name": "solarjot",
+  "name": "volts",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -14,14 +14,14 @@
     "dev:native": "turbo -F native dev",
     "dev:web": "turbo -F web dev",
     "dev:server": "turbo -F server dev",
-    "db:push": "turbo -F @solarjot/db db:push",
-    "db:studio": "turbo -F @solarjot/db db:studio",
-    "db:generate": "turbo -F @solarjot/db db:generate",
-    "db:migrate": "turbo -F @solarjot/db db:migrate",
-    "db:start": "turbo -F @solarjot/db db:start",
-    "db:watch": "turbo -F @solarjot/db db:watch",
-    "db:stop": "turbo -F @solarjot/db db:stop",
-    "db:down": "turbo -F @solarjot/db db:down"
+    "db:push": "turbo -F @volts/db db:push",
+    "db:studio": "turbo -F @volts/db db:studio",
+    "db:generate": "turbo -F @volts/db db:generate",
+    "db:migrate": "turbo -F @volts/db db:migrate",
+    "db:start": "turbo -F @volts/db db:start",
+    "db:watch": "turbo -F @volts/db db:watch",
+    "db:stop": "turbo -F @volts/db db:stop",
+    "db:down": "turbo -F @volts/db db:down"
   },
   "dependencies": {
     "dotenv": "^17.2.2",

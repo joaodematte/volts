@@ -154,7 +154,7 @@
   --popover-foreground: var(--volts-50);
 
   --primary: var(--color-yellow-500);
-  --primary-foreground: var(--color-white);
+  --primary-foreground: var(--color-yellow-950);
 
   --secondary: var(--volts-900);
   --secondary-foreground: var(--volts-50);
