@@ -24,12 +24,12 @@ function RouteComponent() {
 
   return (
     <div className="grid h-dvh w-full place-items-center">
-      <Card className="w-full max-w-xl border-0 bg-background md:p-8">
+      <Card className="w-full max-w-xl border-0 bg-background shadow-none md:p-8">
         <CardHeader>
           <Icons.Volts className="size-12 text-yellow-400" />
         </CardHeader>
         <CardContent className="mb-8">
-          <h1 className="mb-4 font-medium text-2xl text-white">
+          <h1 className="mb-4 font-medium text-2xl dark:text-white">
             Bem-vindo à Volts
           </h1>
           <p className="text-muted-foreground">
