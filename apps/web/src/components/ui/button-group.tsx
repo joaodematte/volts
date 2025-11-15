@@ -27,10 +27,10 @@ function ButtonGroup({
 }: React.ComponentProps<'div'> & VariantProps<typeof buttonGroupVariants>) {
   return (
     <div
-      className={cn(buttonGroupVariants({ orientation }), className)}
-      data-orientation={orientation}
-      data-slot="button-group"
       role="group"
+      data-slot="button-group"
+      data-orientation={orientation}
+      className={cn(buttonGroupVariants({ orientation }), className)}
       {...props}
     />
   );
@@ -63,12 +63,12 @@ function ButtonGroupSeparator({
 }: React.ComponentProps<typeof Separator>) {
   return (
     <Separator
+      data-slot="button-group-separator"
+      orientation={orientation}
       className={cn(
         '!m-0 relative self-stretch bg-input data-[orientation=vertical]:h-auto',
         className,
       )}
-      data-slot="button-group-separator"
-      orientation={orientation}
       {...props}
     />
   );

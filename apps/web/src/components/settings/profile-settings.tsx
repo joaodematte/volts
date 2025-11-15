@@ -1,25 +1,22 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { IconCamera, IconUpload } from '@tabler/icons-react';
+import { IconCamera } from '@tabler/icons-react';
 import { useRouter } from '@tanstack/react-router';
 import type { User } from 'better-auth';
-import { useForm } from 'react-hook-form';
+import { useId, useMemo, useRef } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import z from 'zod';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Field, FieldError, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { InputCopy } from '@/components/ui/input-copy';
+import { Separator } from '@/components/ui/separator';
 import { authClient } from '@/lib/auth-client';
-import { InputCopy } from '../ui/input-copy';
 
-interface ProfileSettingsProps {
+interface UserSettingsProps {
   user: User;
-}
-
-interface ProfileSettingsSectionProps {
-  label: string;
-  description?: string;
-  content: React.ReactElement;
 }
 
 const profileSettingsFormSchema = z.object({
@@ -27,29 +24,11 @@ const profileSettingsFormSchema = z.object({
   image: z.file().optional(),
 });
 
-function ProfileSettingsSection({
-  label,
-  description,
-  content,
-}: ProfileSettingsSectionProps) {
-  return (
-    <div className="grid grid-cols-2 items-center border-b py-3 first:border-y">
-      {description ? (
-        <div className="flex flex-col">
-          <Label className="font-medium text-sm">{label}</Label>
-          <p className="text-muted-foreground text-sm">{description}</p>
-        </div>
-      ) : (
-        <Label className="font-medium text-sm">{label}</Label>
-      )}
-
-      {content}
-    </div>
-  );
-}
-
-export function ProfileSettings({ user }: ProfileSettingsProps) {
+export function ProfileSettings({ user }: UserSettingsProps) {
   const router = useRouter();
+  const nameFieldId = useId();
+
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<z.infer<typeof profileSettingsFormSchema>>({
     resolver: zodResolver(profileSettingsFormSchema),
@@ -58,7 +37,7 @@ export function ProfileSettings({ user }: ProfileSettingsProps) {
     },
   });
 
-  const onSubmit = form.handleSubmit(async (data) => {
+  const onFormSubmit = form.handleSubmit(async (data) => {
     const updateUserSettings = async () => {
       const toUpdate: { name: string; image?: string } = {
         name: data.name,
@@ -83,33 +62,61 @@ export function ProfileSettings({ user }: ProfileSettingsProps) {
 
     toast.promise(updateUserSettings, {
       loading: 'Salvando informações...',
-      success: 'Perfil atualizado com sucesso',
+      success: 'Informações do perfil salvas com sucesso',
       error: 'Ocorreu um problema',
     });
   });
 
-  return (
-    <div className="mt-6 flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <p className="font-semibold dark:text-white">Gerenciar perfil</p>
-        <p className="font-medium text-muted-foreground text-sm">
-          Atualize sua foto de perfil, nome e sobrenome.
-        </p>
-      </div>
+  const handleOnImageClick = () => {
+    imageInputRef.current?.click();
+  };
 
-      <form onSubmit={onSubmit}>
-        <ProfileSettingsSection
-          content={
+  const handleOnImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (!event.target.files) return;
+
+    const file = event.target.files[0];
+
+    form.setValue('image', file);
+  };
+
+  const watchedImage = form.watch('image');
+
+  const imageUrl = useMemo(() => {
+    if (!watchedImage) return user.image ?? '';
+
+    return URL.createObjectURL(watchedImage);
+  }, [watchedImage, user.image]);
+
+  return (
+    <form className="flex flex-col gap-4" onSubmit={onFormSubmit}>
+      <h2 className="font-medium text-lg dark:text-white">Perfil</h2>
+
+      <Card className="rounded-2xl bg-transparent shadow-none">
+        <CardContent className="space-y-4">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+            <div>
+              <p className="font-medium text-sm dark:text-white">
+                Foto de perfil
+              </p>
+              <p className="text-muted-foreground text-xs">
+                Será visível para todos da sua organização
+              </p>
+            </div>
+            <input
+              accept="image/png,image/jpeg"
+              className="hidden"
+              onChange={handleOnImageChange}
+              ref={imageInputRef}
+              type="file"
+            />
             <button
-              className="group relative size-16 justify-self-end overflow-hidden rounded-full"
+              className="relative size-16 rounded-full border hover:opacity-85 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+              onClick={handleOnImageClick}
               type="button"
             >
-              <div className="absolute inset-0 z-10 hidden size-full items-center justify-center bg-white opacity-85 group-hover:flex dark:bg-black">
-                <IconUpload className="text-foreground" />
-              </div>
               {user.image ? (
                 <Avatar className="size-full">
-                  <AvatarImage alt={user.name} src={user.image} />
+                  <AvatarImage alt={user.name} src={imageUrl} />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
               ) : (
@@ -118,28 +125,60 @@ export function ProfileSettings({ user }: ProfileSettingsProps) {
                 </div>
               )}
             </button>
-          }
-          description="Todos da sua organização poderão ver sua foto de perfil"
-          label="Foto de perfil"
-        />
-        <ProfileSettingsSection
-          content={<Input value={user.name} />}
-          label="Nome"
-        />
-        <ProfileSettingsSection
-          content={<InputCopy disabled value={user.id} />}
-          description="Identificador da sua conta no sistema"
-          label="Identificador único"
-        />
-        <ProfileSettingsSection
-          content={<InputCopy disabled value={user.email} />}
-          label="Email"
-        />
+          </div>
 
-        <div className="flex justify-end py-3">
-          <Button type="submit">Salvar</Button>
-        </div>
-      </form>
-    </div>
+          <Separator />
+
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+            <p className="font-medium text-sm dark:text-white">Nome</p>
+            <Input className="w-full md:max-w-sm" value={user.name} />
+          </div>
+
+          <Separator />
+
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+            <div>
+              <p className="font-medium text-sm dark:text-white">
+                Identificador
+              </p>
+              <p className="text-muted-foreground text-xs">
+                Identificador único da sua conta
+              </p>
+            </div>
+
+            <InputCopy
+              containerClassname="md:max-w-sm w-full"
+              disabled
+              value={user.id}
+            />
+          </div>
+
+          <Separator />
+
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
+            <div>
+              <p className="font-medium text-sm dark:text-white">Email</p>
+              <p className="text-muted-foreground text-xs">
+                Atualmente não é possível atualizar o email
+              </p>
+            </div>
+
+            <InputCopy
+              containerClassname="md:max-w-sm w-full"
+              disabled
+              value={user.email}
+            />
+          </div>
+
+          <Separator />
+        </CardContent>
+
+        <CardFooter className="justify-end">
+          <Button className="w-fit self-end" type="submit">
+            Salvar informações do perfil
+          </Button>
+        </CardFooter>
+      </Card>
+    </form>
   );
 }

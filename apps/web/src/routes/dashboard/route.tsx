@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { AppSidebar } from '@/components/sidebar/app-sidebar';
-import { NavMobileHeader } from '@/components/sidebar/nav-mobile-header';
+import { MobileHeader } from '@/components/sidebar/mobile-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { getSession } from '@/functions/get-session';
 
@@ -26,8 +26,8 @@ function RouteComponent() {
     <SidebarProvider>
       <AppSidebar user={session.user} variant="inset" />
       <SidebarInset className="bg-white shadow-xs md:border dark:bg-background md:dark:bg-volts-900">
-        <NavMobileHeader />
-        <div className="p-8">
+        <MobileHeader />
+        <div className="px-4">
           <Outlet />
         </div>
       </SidebarInset>

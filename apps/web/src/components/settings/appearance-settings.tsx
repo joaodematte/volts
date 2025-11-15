@@ -1,4 +1,4 @@
-import { Label } from '@/components/ui/label';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Select,
   SelectContent,
@@ -13,30 +13,39 @@ export function AppearanceSettings() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="mt-6 flex flex-col gap-6">
-      <div className="flex flex-col gap-1">
-        <p className="font-semibold dark:text-white">Aparência</p>
-        <p className="font-medium text-muted-foreground text-sm">
-          Customize a aparência do seu dashboard.
+    <div className="flex flex-col gap-4">
+      <div className="gap-2">
+        <h2 className="font-medium text-lg dark:text-white">Preferências</h2>
+        <p className="text-muted-foreground text-sm">
+          Preferências atreladas a sua conta no sistema
         </p>
       </div>
 
-      <div className="grid grid-cols-2 border-y py-3">
-        <Label>Tema</Label>
+      <Card className="rounded-2xl bg-transparent shadow-none">
+        <CardContent className="space-y-4">
+          <div className="flex flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-medium text-sm dark:text-white">Tema</p>
+              <p className="text-muted-foreground text-xs">
+                Substitua o tema padrão do sistema
+              </p>
+            </div>
 
-        <Select onValueChange={setTheme} value={theme}>
-          <SelectTrigger className="w-31.5 justify-self-end">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="system">Sistema</SelectItem>
-              <SelectItem value="light">Claro</SelectItem>
-              <SelectItem value="dark">Escuro</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
+            <Select onValueChange={setTheme} value={theme}>
+              <SelectTrigger className="w-31.5">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="system">Sistema</SelectItem>
+                  <SelectItem value="light">Claro</SelectItem>
+                  <SelectItem value="dark">Escuro</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
